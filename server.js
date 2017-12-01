@@ -6,10 +6,8 @@ function start(route, handler) {
     var pathname = url.parse(request.url).pathname;
     console.log('request for' + pathname + 'received');
 
-    route(pathname, handler);
-    response.writeHead('200', {'Content-Type':'text/plain'});
-    response.write('hello nodejs');
-    response.end();
+    var content = route(pathname, handler, response);
+    
   }
   http.createServer(onRequest).listen(8888);
   console.log('server was started');
